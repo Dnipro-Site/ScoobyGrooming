@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scooby — грумінг-студія у Дніпрі біля ТРЦ «Дафі»</title>
+<meta name="description" content="Професійний грумінг для собак та котів у Дніпрі, Зоряний бульвар, 1А. Без наркозу та стресу. Щодня з 10:00 до 20:00.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Nunito','system-ui','sans-serif'] },
+  colors: { cream:'#FFFDF9', ink:'#1E293B', peach:'#F97316', sage:'#0D9488' }
+}}};
+</script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { background:#FFFDF9; color:#1E293B; font-family:'Nunito',system-ui,sans-serif; }
+  .soft { box-shadow: 0 10px 30px -12px rgba(30,41,59,.15); }
+  .chip { cursor:pointer; transition:.2s; }
+  .chip input { position:absolute; opacity:0; pointer-events:none; }
+  .chip:has(input:checked) { border-color:#F97316; background:#FFF1E6; box-shadow:0 0 0 3px rgba(249,115,22,.15); }
+  .chip:has(input:focus-visible) { outline:3px solid #0D9488; outline-offset:2px; }
+  .chip:has(input:disabled) { opacity:.45; cursor:not-allowed; }
+  .faq-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+  .faq-item.open .faq-body { grid-template-rows:1fr; }
+  .faq-body > div { overflow:hidden; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+  .faq-icon { transition:transform .3s; }
+  .field { width:100%; border:2px solid #E7E5E4; background:#fff; border-radius:1rem; padding:.8rem 1rem; font-weight:600; transition:.2s; }
+  .field:focus { outline:none; border-color:#0D9488; box-shadow:0 0 0 3px rgba(13,148,136,.15); }
+  .field.err { border-color:#DC2626; }
+  :focus-visible { outline:3px solid #0D9488; outline-offset:2px; }
+  @keyframes pop { from { opacity:0; transform:scale(.92) translateY(10px);} to { opacity:1; transform:none;} }
+  .pop { animation: pop .3s ease; }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="paw" viewBox="0 0 64 64"><ellipse cx="14" cy="26" rx="7" ry="9"/><ellipse cx="27" cy="14" rx="7" ry="10"/><ellipse cx="41" cy="14" rx="7" ry="10"/><ellipse cx="53" cy="26" rx="7" ry="9"/><path d="M32 30c-9 0-18 9-18 17 0 6 5 9 11 8 3-.5 5-1.5 7-1.5s4 1 7 1.5c6 1 11-2 11-8 0-8-9-17-18-17z"/></symbol>
+</svg>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-40 bg-cream/90 backdrop-blur border-b border-stone-200/70">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-2.5" aria-label="Scooby — грумінг-студія">
+      <span class="w-10 h-10 rounded-2xl bg-peach grid place-items-center text-white"><svg class="w-6 h-6 fill-current"><use href="#paw"/></svg></span>
+      <span class="leading-tight"><span class="block text-xl font-black">Scooby</span><span class="block text-xs font-bold text-sage">Грумінг-студія</span></span>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-600">
+      <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-peach"></i>ТРЦ Дафі, Зоряний бульвар, 1А</span>
+      <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-sage"></i>10:00 – 20:00</span>
+    </div>
+    <a href="#booking" class="bg-peach hover:bg-orange-600 text-white font-extrabold rounded-full px-4 sm:px-6 py-2.5 text-sm sm:text-base transition soft whitespace-nowrap">Записати улюбленця</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-orange-100 blur-2xl opacity-80"></div>
+  <div class="absolute top-40 -left-24 w-72 h-72 rounded-full bg-teal-100 blur-2xl opacity-70"></div>
+  <svg class="absolute right-6 top-12 w-24 h-24 fill-peach/15 rotate-12 hidden sm:block"><use href="#paw"/></svg>
+  <svg class="absolute left-[46%] bottom-6 w-14 h-14 fill-sage/20 -rotate-12 hidden sm:block"><use href="#paw"/></svg>
+  <div class="relative max-w-6xl mx-auto px-4 pt-12 pb-16 sm:pt-20 sm:pb-24 grid lg:grid-cols-5 gap-10 items-center">
+    <div class="lg:col-span-3">
+      <span class="inline-flex items-center gap-2 bg-teal-50 text-sage border border-teal-200 rounded-full px-4 py-1.5 text-sm font-extrabold"><i data-lucide="heart" class="w-4 h-4 fill-current"></i>Грумінг без стресу • м. Дніпро</span>
+      <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight">Дбайливий грумінг для собак та котів біля ТРЦ «Дафі»</h1>
+      <p class="mt-5 text-lg text-slate-600 max-w-xl leading-relaxed">Працюємо без наркозу та стресу, використовуємо безпечну професійну косметику та індивідуально підходимо до кожного хвостика.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#booking" class="bg-peach hover:bg-orange-600 text-white font-extrabold rounded-full px-8 py-4 text-center transition soft">Розрахувати вартість</a>
+        <a href="#services" class="bg-white border-2 border-stone-200 hover:border-sage hover:text-sage font-extrabold rounded-full px-8 py-4 text-center transition">Переглянути послуги</a>
+      </div>
+    </div>
+    <div class="lg:col-span-2 grid gap-3">
+      <div class="bg-white rounded-3xl soft p-5 flex items-center gap-4 border border-stone-100">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-orange-100 text-peach grid place-items-center"><i data-lucide="hand-heart"></i></span>
+        <span class="font-extrabold text-lg">Без стресу та грубості</span>
+      </div>
+      <div class="bg-white rounded-3xl soft p-5 flex items-center gap-4 border border-stone-100 sm:ml-8">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-teal-100 text-sage grid place-items-center"><i data-lucide="sparkles"></i></span>
+        <span class="font-extrabold text-lg">Професійна косметика</span>
+      </div>
+      <div class="bg-white rounded-3xl soft p-5 flex items-center gap-4 border border-stone-100">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-orange-100 text-peach grid place-items-center"><i data-lucide="map-pin"></i></span>
+        <span class="font-extrabold text-lg">Поруч з ТРЦ Дафі</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-16 sm:py-20 bg-white/60">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl sm:text-4xl font-black">Послуги та ціни</h2>
+      <p class="mt-3 text-slate-600 text-lg">Прозорий прайс. Остаточна вартість залежить від ваги, породи та стану шерсті.</p>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-orange-100 text-peach grid place-items-center"><i data-lucide="scissors"></i></span>
+        <h3 class="mt-4 text-xl font-extrabold">Повний комплекс</h3>
+        <p class="text-sage font-bold">малі породи</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 850 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-orange-100 text-peach grid place-items-center"><i data-lucide="scissors"></i></span>
+        <h3 class="mt-4 text-xl font-extrabold">Повний комплекс</h3>
+        <p class="text-sage font-bold">середні породи</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 950 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-orange-100 text-peach grid place-items-center"><i data-lucide="heart"></i></span>
+        <h3 class="mt-4 text-xl font-extrabold">Повний комплекс для Мальтіпу</h3>
+        <p class="text-sage font-bold">для кучерявих красенів</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 1000 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-teal-100 text-sage grid place-items-center"><i data-lucide="droplets"></i></span>
+        <h3 class="mt-4 text-xl font-extrabold">Гігієнічний комплекс для Мальтіпу</h3>
+        <p class="text-sage font-bold">охайність без повної стрижки</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 900 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-teal-100 text-sage grid place-items-center"><i data-lucide="wind"></i></span>
+        <h3 class="mt-4 text-xl font-extrabold">Експрес-лінька та вичісування</h3>
+        <p class="text-sage font-bold">для собак і котів</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 750 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+      <article class="bg-cream rounded-3xl p-6 soft border border-stone-100 flex flex-col">
+        <span class="w-12 h-12 rounded-2xl bg-teal-100 text-sage grid place-items-center"><svg class="w-6 h-6 fill-current"><use href="#paw"/></svg></span>
+        <h3 class="mt-4 text-xl font-extrabold">Окремі процедури</h3>
+        <p class="text-sage font-bold">підрізання кігтів, чистка вушок, вибривання подушечок лап</p>
+        <p class="mt-auto pt-5 text-3xl font-black text-peach">від 200 <span class="text-base text-slate-500 font-bold">грн</span></p>
+      </article>
+    </div>
+
+    <div class="mt-10 rounded-[2rem] bg-gradient-to-br from-teal-50 to-orange-50 border border-teal-100 p-6 sm:p-10">
+      <h3 class="text-2xl sm:text-3xl font-black">Що входить у повний комплекс?</h3>
+      <ul class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-3 font-bold">
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Купання професійною косметикою</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Гігієна інтимних зон</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Сушка та укладання шерсті</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Підрізання кігтів</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Чистка вушок</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Вибривання подушечок лап</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Відкривання очей на мордочці</li>
+        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-sage shrink-0"></i>Фінішний парфум</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="py-16 sm:py-20">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center">
+      <h2 class="text-3xl sm:text-4xl font-black">Швидкий запис на грумінг</h2>
+      <p class="mt-3 text-slate-600 text-lg">Оберіть улюбленця та послугу — ми покажемо орієнтовну вартість.</p>
+    </div>
+    <form id="bookForm" class="mt-10 bg-white rounded-[2rem] soft border border-stone-100 p-5 sm:p-10 space-y-8" novalidate>
+      <fieldset>
+        <legend class="font-extrabold text-lg mb-3"><span class="text-peach">Крок 1.</span> Вид улюбленця</legend>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="pet" value="small" checked><i data-lucide="dog" class="mx-auto mb-2 text-peach"></i>Собака малої породи</label>
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="pet" value="medium"><i data-lucide="dog" class="mx-auto mb-2 text-peach w-8 h-8"></i>Середня порода</label>
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="pet" value="maltipoo"><i data-lucide="heart" class="mx-auto mb-2 text-peach"></i>Мальтіпу</label>
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="pet" value="cat"><i data-lucide="cat" class="mx-auto mb-2 text-peach"></i>Котик</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="font-extrabold text-lg mb-3"><span class="text-peach">Крок 2.</span> Послуга</legend>
+        <div class="grid sm:grid-cols-3 gap-3">
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="service" value="full" checked><i data-lucide="scissors" class="mx-auto mb-2 text-sage"></i>Повний комплекс</label>
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="service" value="hygiene"><i data-lucide="droplets" class="mx-auto mb-2 text-sage"></i>Гігієнічний комплекс</label>
+          <label class="chip relative border-2 border-stone-200 rounded-2xl p-4 text-center font-extrabold"><input type="radio" name="service" value="express"><i data-lucide="wind" class="mx-auto mb-2 text-sage"></i>Експрес-лінька</label>
+        </div>
+      </fieldset>
+
+      <div class="rounded-3xl bg-gradient-to-br from-orange-50 to-teal-50 border border-orange-100 p-6 text-center" aria-live="polite">
+        <p class="font-bold text-slate-600">Орієнтовна вартість</p>
+        <p id="price" class="mt-1 text-4xl sm:text-5xl font-black text-peach">від 850 грн</p>
+        <p id="priceNote" class="mt-2 text-sm font-bold text-slate-500">*Точна вартість залежить від ваги та стану шерсті</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="owner" class="block font-extrabold mb-1.5">Імʼя господаря</label>
+          <input id="owner" class="field" type="text" placeholder="Наприклад, Олена" autocomplete="name">
+        </div>
+        <div>
+          <label for="breed" class="block font-extrabold mb-1.5">Порода улюбленця</label>
+          <input id="breed" class="field" type="text" placeholder="Наприклад, мальтіпу Бонді">
+        </div>
+        <div class="sm:col-span-2">
+          <label for="contact" class="block font-extrabold mb-1.5">Телефон або нік в Instagram / Telegram</label>
+          <input id="contact" class="field" type="text" placeholder="+380… або @нік" autocomplete="tel">
+        </div>
+      </div>
+      <p id="formErr" class="hidden text-red-600 font-bold text-sm" role="alert">Вкажіть, будь ласка, імʼя та контакт для звʼязку.</p>
+      <button type="submit" class="w-full bg-peach hover:bg-orange-600 text-white font-black text-lg rounded-full py-4 transition soft">Записатися на грумінг</button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-16 sm:py-20 bg-white/60">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-black text-center">Часті запитання</h2>
+    <div class="mt-10 space-y-3">
+      <div class="faq-item bg-cream rounded-3xl border border-stone-100 soft">
+        <button class="w-full flex items-center justify-between gap-4 text-left p-5 sm:p-6 font-extrabold text-lg" aria-expanded="false">
+          Чи використовуєте ви заспокійливі препарати?
+          <span class="faq-icon w-9 h-9 shrink-0 rounded-full bg-orange-100 text-peach grid place-items-center"><i data-lucide="plus" class="w-5 h-5"></i></span>
+        </button>
+        <div class="faq-body"><div><p class="px-5 sm:px-6 pb-6 text-slate-600 leading-relaxed">Ні, ми працюємо виключно з любовʼю, терпінням та адаптацією без стресу.</p></div></div>
+      </div>
+      <div class="faq-item bg-cream rounded-3xl border border-stone-100 soft">
+        <button class="w-full flex items-center justify-between gap-4 text-left p-5 sm:p-6 font-extrabold text-lg" aria-expanded="false">
+          Чи можна залишити улюбленця і піти у справах?
+          <span class="faq-icon w-9 h-9 shrink-0 rounded-full bg-orange-100 text-peach grid place-items-center"><i data-lucide="plus" class="w-5 h-5"></i></span>
+        </button>
+        <div class="faq-body"><div><p class="px-5 sm:px-6 pb-6 text-slate-600 leading-relaxed">Так, ми знаходимося прямо біля ТРЦ «Дафі» — ви можете спокійно випити кави чи зробити покупки.</p></div></div>
+      </div>
+      <div class="faq-item bg-cream rounded-3xl border border-stone-100 soft">
+        <button class="w-full flex items-center justify-between gap-4 text-left p-5 sm:p-6 font-extrabold text-lg" aria-expanded="false">
+          З якого віку можна приводити цуценя?
+          <span class="faq-icon w-9 h-9 shrink-0 rounded-full bg-orange-100 text-peach grid place-items-center"><i data-lucide="plus" class="w-5 h-5"></i></span>
+        </button>
+        <div class="faq-body"><div><p class="px-5 sm:px-6 pb-6 text-slate-600 leading-relaxed">Після всіх планових щеплень та карантину, зазвичай з 3–4 місяців.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer id="contacts" class="bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-4 py-14 grid md:grid-cols-2 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5">
+        <span class="w-11 h-11 rounded-2xl bg-peach grid place-items-center"><svg class="w-6 h-6 fill-current"><use href="#paw"/></svg></span>
+        <span class="text-2xl font-black">Scooby <span class="text-teal-300 text-base font-bold">Грумінг-студія</span></span>
+      </div>
+      <p class="mt-4 text-slate-300 max-w-sm leading-relaxed">Професійний грумінг для ваших улюбленців. Дбайливо. Безпечно. З любовʼю.</p>
+      <ul class="mt-6 space-y-3 font-bold">
+        <li class="flex gap-3"><i data-lucide="map-pin" class="text-peach shrink-0"></i>м. Дніпро, Зоряний бульвар, 1А (біля ТРЦ «Дафі»)</li>
+        <li class="flex gap-3"><i data-lucide="clock" class="text-teal-300 shrink-0"></i>Щодня 10:00 – 20:00</li>
+      </ul>
+    </div>
+    <div class="flex flex-col justify-center gap-3">
+      <a href="https://www.instagram.com/grooming_scooby_studio/" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-peach hover:bg-orange-600 font-extrabold rounded-full px-6 py-4 transition"><i data-lucide="instagram"></i>Написати в Instagram (@grooming_scooby_studio)</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BE%D1%80%D1%8F%D0%BD%D0%B8%D0%B9+%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80+1%D0%90+%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 font-extrabold rounded-full px-6 py-4 transition"><i data-lucide="map"></i>Відкрити на Google Картах</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-sm text-slate-400 font-semibold">© <span id="year"></span> Scooby — грумінг-студія, м. Дніпро</div>
+</footer>
+
+<!-- MODAL -->
+<div id="modal" class="hidden fixed inset-0 z-50 bg-ink/60 backdrop-blur-sm p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="pop bg-cream rounded-[2rem] max-w-md mx-auto my-10 p-7 sm:p-9 text-center soft">
+    <span class="w-16 h-16 mx-auto rounded-full bg-teal-100 text-sage grid place-items-center"><i data-lucide="check" class="w-9 h-9"></i></span>
+    <h3 id="mTitle" class="mt-4 text-2xl font-black">Дякуємо, <span id="mName"></span>!</h3>
+    <p class="mt-3 text-slate-600 leading-relaxed">Щоб підтвердити запис, напишіть нам в Instagram — оберемо зручний час для вашого хвостика.</p>
+    <div class="mt-5 text-left rounded-2xl bg-white border border-stone-200 p-4 text-sm font-bold space-y-1">
+      <p>Улюбленець: <span id="mPet" class="text-slate-600"></span></p>
+      <p>Послуга: <span id="mSrv" class="text-slate-600"></span></p>
+      <p>Орієнтовно: <span id="mPrice" class="text-peach"></span></p>
+      <p>Контакт: <span id="mContact" class="text-slate-600"></span></p>
+    </div>
+    <a href="https://www.instagram.com/grooming_scooby_studio/" target="_blank" rel="noopener" class="mt-6 flex items-center justify-center gap-2 bg-peach hover:bg-orange-600 text-white font-extrabold rounded-full px-6 py-4 transition"><i data-lucide="instagram"></i>@grooming_scooby_studio</a>
+    <button id="mClose" class="mt-3 w-full font-extrabold text-slate-500 hover:text-ink py-2">Закрити</button>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Calculator
+  const PRICES = {
+    small:    { full: 850,  hygiene: null, express: 750 },
+    medium:   { full: 950,  hygiene: null, express: 750 },
+    maltipoo: { full: 1000, hygiene: 900,  express: 750 },
+    cat:      { full: null, hygiene: null, express: 750 }
+  };
+  const PET_NAMES = { small:'Собака малої породи', medium:'Собака середньої породи', maltipoo:'Мальтіпу', cat:'Котик' };
+  const SRV_NAMES = { full:'Повний комплекс', hygiene:'Гігієнічний комплекс', express:'Експрес-лінька та вичісування' };
+  const form = document.getElementById('bookForm');
+  const priceEl = document.getElementById('price');
+  const noteEl = document.getElementById('priceNote');
+  const NOTE = '*Точна вартість залежить від ваги та стану шерсті';
+  const val = n => form.querySelector(`input[name="${n}"]:checked`).value;
+  let priceText = '';
+
+  function calc() {
+    const pet = val('pet'), srv = val('service');
+    const p = PRICES[pet][srv];
+    if (p) {
+      priceText = `від ${p} грн`;
+      priceEl.textContent = priceText;
+      noteEl.textContent = NOTE;
+    } else {
+      priceText = 'Уточнюйте в Instagram';
+      priceEl.textContent = priceText;
+      noteEl.textContent = srv === 'hygiene'
+        ? 'Гігієнічний комплекс у прайсі — для Мальтіпу. Для інших порід розрахуємо індивідуально.'
+        : 'Вартість для цієї комбінації розраховуємо індивідуально — напишіть нам в Instagram.';
+    }
+  }
+  form.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', calc));
+  calc();
+
+  // Submit
+  const modal = document.getElementById('modal');
+  const err = document.getElementById('formErr');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const owner = document.getElementById('owner'), contact = document.getElementById('contact'), breed = document.getElementById('breed');
+    const bad = [owner, contact].filter(f => !f.value.trim());
+    [owner, contact].forEach(f => f.classList.toggle('err', !f.value.trim()));
+    err.classList.toggle('hidden', bad.length === 0);
+    if (bad.length) { bad[0].focus(); return; }
+    document.getElementById('mName').textContent = owner.value.trim();
+    document.getElementById('mPet').textContent = PET_NAMES[val('pet')] + (breed.value.trim() ? ` (${breed.value.trim()})` : '');
+    document.getElementById('mSrv').textContent = SRV_NAMES[val('service')];
+    document.getElementById('mPrice').textContent = priceText;
+    document.getElementById('mContact').textContent = contact.value.trim();
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('mClose').focus();
+  });
+  function closeModal() { modal.classList.add('hidden'); document.body.style.overflow = ''; }
+  document.getElementById('mClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item > button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement, open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+</script>
+</body>
+</html>
